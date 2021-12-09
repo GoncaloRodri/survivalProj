@@ -1,6 +1,10 @@
 public class Main{
     //ola main
 
-    private void hi(){
+    public static void main(String[] args) {
+        hi();
+    }
+
+    private static void hi(){
     }
 }
