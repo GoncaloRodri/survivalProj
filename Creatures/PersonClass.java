@@ -3,6 +3,7 @@ package Creatures;
 import java.util.List;
 
 import enums.RarityEnum;
+import enums.Status;
 import exceptions.BrokenItemException;
 import exceptions.CanNotMoveException;
 import exceptions.InventoryFullException;
@@ -39,6 +40,7 @@ public class PersonClass implements Person {
 	private MiningItem mineWeapon;
 	private double currentHealth; // por defininr
 	private double currentStamina; // por definir
+	private Status status;
 
 	private List<Item> inventory; // por trabalhar
 
@@ -70,6 +72,7 @@ public class PersonClass implements Person {
 		this.lastName = lastName;
 		this.age = age;
 		this.gender = gender;
+		this.status = Status.Wandering;
 		exp = 0;
 		level = 0;
 
@@ -162,6 +165,11 @@ public class PersonClass implements Person {
 	@Override
 	public double getCurrentHealth() {
 		return currentHealth;
+	}
+
+	@Override
+	public Object getStatus() {
+		return status;
 	}
 
 	@Override

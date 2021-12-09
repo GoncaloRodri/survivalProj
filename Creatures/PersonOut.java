@@ -33,6 +33,8 @@ public interface PersonOut {
 	FightingItem getFigthWeapon();
 	
 	MiningItem getMiningWeapon();
+
+    Object getStatus();
 	
 	
 }

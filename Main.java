@@ -106,17 +106,18 @@ public class Main {
 	private static void processListPeople(DataBaseSystem dbs) {
 		try {
 			Iterator<Person> it = dbs.peopleIterator();
-			System.out.printf("Population: %d,\n", dbs.getPopSize());
+			System.out.printf("Population: %d\n", dbs.getPopSize());
 			
 			while (it.hasNext()) {
 				PersonOut p = it.next();
 				System.out.println();
-				System.out.printf("Name: %s %s,\n", p.getFirstName(), p.getLastName());
-				System.out.printf("Age: %d,\n", p.getAge());
-				System.out.printf("Level %d,\n", p.getLevel());
-				System.out.printf("XP: %.2f,\n", p.getTotalExp());
-				System.out.printf("Health: %.1f/%d,\n", p.getCurrentHealth(), p.getMaxHealth());
-				System.out.printf("Stamina: %.1f/%d,\n\n", p.getCurrentStamina(), p.getMaxStamina());
+				System.out.printf("Name: %s %s\n", p.getFirstName(), p.getLastName());
+				System.out.printf("Status: %s\n",p.getStatus());
+				System.out.printf("Age: %d\n", p.getAge());
+				System.out.printf("Level %d\n", p.getLevel());
+				System.out.printf("XP: %.2f\n", p.getTotalExp());
+				System.out.printf("Health: %.1f/%d\n", p.getCurrentHealth(), p.getMaxHealth());
+				System.out.printf("Stamina: %.1f/%d\n\n", p.getCurrentStamina(), p.getMaxStamina());
 			}
 		} catch (NoPopulationException e) {
 			System.out.println(e.getMessage());
