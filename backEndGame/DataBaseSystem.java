@@ -3,8 +3,10 @@ package backEndGame;
 import java.util.Iterator;
 
 import Creatures.Person;
+import Creatures.PersonOut;
 import exceptions.NameAlreadyExistsException;
 import exceptions.NoPopulationException;
+import exceptions.PersonNotFoundException;
 
 public interface DataBaseSystem {
 
@@ -16,5 +18,7 @@ public interface DataBaseSystem {
 	int getPopSize();
 	
 	Iterator<Person> peopleIterator() throws NoPopulationException;
+
+    PersonOut getPerson(String fname, String sname) throws PersonNotFoundException;
 
 }

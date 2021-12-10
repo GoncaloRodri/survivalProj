@@ -41,6 +41,7 @@ public class PersonClass implements Person {
 	private double currentHealth; // por defininr
 	private double currentStamina; // por definir
 	private Status status;
+	
 
 	private List<Item> inventory; // por trabalhar
 
@@ -168,7 +169,7 @@ public class PersonClass implements Person {
 	}
 
 	@Override
-	public Object getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
@@ -200,6 +201,32 @@ public class PersonClass implements Person {
 	@Override
 	public int getMaxStamina() {
 		return maxStamina;
+	}
+
+	
+	@Override
+	public int getHealthLvl() {
+		return healthLvl;
+	}
+
+	@Override
+	public int getStamminaLvl() {
+		return staminaLvl;
+	}
+
+	@Override
+	public int getAttackLvl() {
+		return attackLvl;
+	}
+
+	@Override
+	public int getDefenceLvl() {
+		return defenceLvl;
+	}
+
+	@Override
+	public int getSpeedLvl() {
+		return speedLvl;
 	}
 
 	// lvlUps

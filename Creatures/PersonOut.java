@@ -1,4 +1,5 @@
 package Creatures;
+import enums.Status;
 import item.FightingItem;
 import item.MiningItem;
 
@@ -29,12 +30,22 @@ public interface PersonOut {
 	int getMaxHealth();
 	
 	int getMaxStamina();
+
+	int getHealthLvl();
+
+	int getStamminaLvl();
+
+	int getAttackLvl();
+
+	int getDefenceLvl();
+
+	int getSpeedLvl();
 	
 	FightingItem getFigthWeapon();
 	
 	MiningItem getMiningWeapon();
 
-    Object getStatus();
+    Status getStatus();
 	
 	
 }

@@ -10,6 +10,7 @@ import backEndGame.DataBaseSystemClass;
 import backEndGame.InvalidCommandException;
 import exceptions.NameAlreadyExistsException;
 import exceptions.NoPopulationException;
+import exceptions.PersonNotFoundException;
 
 public class Main {
 
@@ -18,7 +19,7 @@ public class Main {
 	}
 
 	public enum Commands {
-		LIST_PEOPLE,ADD_PERSON, EXIT
+		LIST_PEOPLE,ADD_PERSON,LIST, EXIT
 	}
 
 	private static void processCommand() {
@@ -36,6 +37,9 @@ public class Main {
 				processAddPerson(dbs,in);
 				break;
 				
+			case LIST:
+				processListPerson(dbs,in);
+				break;
 			case EXIT:
 				break;
 				
@@ -90,6 +94,39 @@ public class Main {
 		}
 	}
 
+	private static void processListPerson(DataBaseSystem dbs, Scanner in) {
+		try{
+			String fname = in.next();
+			String sname = in.nextLine().trim();
+ 			PersonOut p = dbs.getPerson(fname,sname);
+			outBasicPerson(p);
+			outAdvancePerson(p);
+		} catch( PersonNotFoundException e){
+			System.out.println(e.getMessage());
+		}
+	}
+
+	private static void outAdvancePerson(PersonOut p) {
+		System.out.println("---------------");
+		System.out.printf("Attack: %d/100 [%d]\n",p.getAttack(),p.getAttackLvl());
+		System.out.printf("Defence: %d/100 [%d]\n",p.getDefence(),p.getDefenceLvl());
+		System.out.printf("Speed: %d/100 [%d]\n",p.getSpeed(),p.getSpeedLvl());
+		System.out.println("---------------");
+
+
+	}
+
+	private static void outBasicPerson(PersonOut p){
+		System.out.println();
+		System.out.printf("Name: %s %s\n", p.getFirstName(), p.getLastName());
+		System.out.printf("Status: %s\n",p.getStatus());
+		System.out.printf("Age: %d\n", p.getAge());
+		System.out.printf("Level %d\n", p.getLevel());
+		System.out.printf("XP: %.2f\n", p.getTotalExp());
+		System.out.printf("Health: %.1f/%d [%d]\n", p.getCurrentHealth(), p.getMaxHealth(), p.getHealthLvl());
+		System.out.printf("Stamina: %.1f/%d [%d]\n\n", p.getCurrentStamina(), p.getMaxStamina(), p.getStamminaLvl());
+	}
+
 	private static void processAddPerson(DataBaseSystem dbs, Scanner in) {
 		try {
 			String fname = in.next();
@@ -110,14 +147,7 @@ public class Main {
 			
 			while (it.hasNext()) {
 				PersonOut p = it.next();
-				System.out.println();
-				System.out.printf("Name: %s %s\n", p.getFirstName(), p.getLastName());
-				System.out.printf("Status: %s\n",p.getStatus());
-				System.out.printf("Age: %d\n", p.getAge());
-				System.out.printf("Level %d\n", p.getLevel());
-				System.out.printf("XP: %.2f\n", p.getTotalExp());
-				System.out.printf("Health: %.1f/%d\n", p.getCurrentHealth(), p.getMaxHealth());
-				System.out.printf("Stamina: %.1f/%d\n\n", p.getCurrentStamina(), p.getMaxStamina());
+				outBasicPerson(p);
 			}
 		} catch (NoPopulationException e) {
 			System.out.println(e.getMessage());
@@ -134,7 +164,7 @@ public class Main {
 	 */
 	private static Commands getCommand(Scanner in) {
 		Commands com = Commands.valueOf(in.next().trim().toUpperCase());
-		
+		//dar exception comando errado
 		return com;
 	}
 

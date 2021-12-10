@@ -6,6 +6,7 @@ import java.util.List;
 
 import Creatures.Person;
 import Creatures.PersonClass;
+import Creatures.PersonOut;
 import exceptions.*;
 
 public class DataBaseSystemClass implements DataBaseSystem {
@@ -45,6 +46,13 @@ public class DataBaseSystemClass implements DataBaseSystem {
 	@Override
 	public int getPopSize() {
 		return popList.size();
+	}
+
+	@Override
+	public PersonOut getPerson(String fname, String sname) throws PersonNotFoundException {
+		int i = popList.indexOf(new PersonClass(fname, sname, 1, ""));		
+		if (i<0) throw new PersonNotFoundException(fname);
+		return popList.get(i);
 	}
 
 }
