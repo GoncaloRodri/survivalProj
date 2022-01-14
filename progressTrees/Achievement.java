@@ -47,6 +47,14 @@ public class Achievement {
         return level;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public String getDescription(){
+        return descripton;
+    }
+
     public boolean isUnlocked(){
         return unlocked;
     }
