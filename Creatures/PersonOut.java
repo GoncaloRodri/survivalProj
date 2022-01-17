@@ -41,9 +41,13 @@ public interface PersonOut {
 
 	int getSpeedLvl();
 	
-	FightingItem getFigthWeapon();
+	FightingItem getFightWeapon();
+
+	String getFightWeaponString();
 	
 	MiningItem getMiningWeapon();
+
+	String getMiningWeaponString();
 
     Status getStatus();
 	

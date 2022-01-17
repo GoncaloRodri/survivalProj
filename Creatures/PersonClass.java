@@ -229,6 +229,24 @@ public class PersonClass implements Person {
 		return speedLvl;
 	}
 
+	
+	@Override
+	public FightingItem getFightWeapon() {
+		return fightWeapon;
+	}
+
+	@Override
+	public String getFightWeaponString() {
+		return fightWeapon.getName();
+	}
+
+	@Override
+	public String getMiningWeaponString() {
+		return mineWeapon.getName();
+	}
+
+
+
 	// lvlUps
 
 	@Override
@@ -425,5 +443,6 @@ public class PersonClass implements Person {
 		}
 		return true;
 	}
+
 
 }

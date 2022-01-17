@@ -19,14 +19,15 @@ public class Main {
 	}
 
 	public enum Commands {
-		LIST_PEOPLE,ADD_PERSON,LIST, EXIT
+		LIST_PEOPLE,ADD_PERSON,LIST, EXIT, UNKNOWN
 	}
 
 	private static void processCommand() {
 		Scanner in = new Scanner(System.in);
 		DataBaseSystem dbs = new DataBaseSystemClass();
 		Commands com = getCommand(in);
-		while (!com.equals(Commands.EXIT)) {
+		//System.out.printf("Command Value: %s", com);
+		while (com == null | !com.equals(Commands.EXIT)) {
 			switch (com) {
 
 			case LIST_PEOPLE:
@@ -107,17 +108,19 @@ public class Main {
 	}
 
 	private static void outAdvancePerson(PersonOut p) {
-		System.out.println("---------------");
 		System.out.printf("Attack: %d/100 [%d]\n",p.getAttack(),p.getAttackLvl());
 		System.out.printf("Defence: %d/100 [%d]\n",p.getDefence(),p.getDefenceLvl());
 		System.out.printf("Speed: %d/100 [%d]\n",p.getSpeed(),p.getSpeedLvl());
 		System.out.println("---------------");
+		System.out.printf("Fighting Weapon: %s\n",p.getFightWeaponString());
+		System.out.printf("Mining Weapon: %s\n",p.getMiningWeaponString());
+		System.out.println("---------------");
+		
 
 
 	}
 
 	private static void outBasicPerson(PersonOut p){
-		System.out.println();
 		System.out.printf("Name: %s %s\n", p.getFirstName(), p.getLastName());
 		System.out.printf("Status: %s\n",p.getStatus());
 		System.out.printf("Age: %d\n", p.getAge());
@@ -125,6 +128,8 @@ public class Main {
 		System.out.printf("XP: %.2f\n", p.getTotalExp());
 		System.out.printf("Health: %.1f/%d [%d]\n", p.getCurrentHealth(), p.getMaxHealth(), p.getHealthLvl());
 		System.out.printf("Stamina: %.1f/%d [%d]\n\n", p.getCurrentStamina(), p.getMaxStamina(), p.getStamminaLvl());
+		System.out.println("---------------");
+
 	}
 
 	private static void processAddPerson(DataBaseSystem dbs, Scanner in) {
@@ -163,8 +168,12 @@ public class Main {
 	 * @throws InvalidCommandException 
 	 */
 	private static Commands getCommand(Scanner in) {
-		Commands com = Commands.valueOf(in.next().trim().toUpperCase());
-		//dar exception comando errado
+		Commands com;
+		try{
+			com = Commands.valueOf(in.next().trim().toUpperCase());
+		} catch(IllegalArgumentException e){
+			com = Commands.UNKNOWN;
+		}
 		return com;
 	}
 
